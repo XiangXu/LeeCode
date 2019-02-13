@@ -1,0 +1,3 @@
+# LeeCode
+
+just some practices
