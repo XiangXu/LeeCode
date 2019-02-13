@@ -11,6 +11,39 @@ Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 
+## First Solution
+
+Try to loop through all the nums and add them together 
+
+Runtime: **45 ms**
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] indices = new int[2];
+		
+		for(int i=0; i<nums.length; i++)
+		{
+			for(int j=i+1; j<nums.length; j++)
+			{
+				if(nums[i] + nums[j] == target)
+				{
+					indices[0] = i;
+					indices[1] = j;
+					break;
+				}
+			}
+		}
+		
+		return indices;
+    }
+}
+```
+
+## Second Solution
+
+Instead of looping array twice, we can just loop array once by using a HashMap to store the index and complement.
+
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) 
