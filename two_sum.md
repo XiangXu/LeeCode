@@ -44,6 +44,8 @@ class Solution {
 
 Instead of looping array twice, we can just loop array once by using a HashMap to store the index and complement.
 
+Runtime: **3 ms**
+
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) 
