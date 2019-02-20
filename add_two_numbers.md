@@ -23,7 +23,7 @@ Explanation: 342 + 465 = 807.
 
 ## First Solution
 
-Interator two listnodes at same time, if one ListNode has two nodes and the other one only has one node, then we condisder the second one has 0.
+Iterate two listnodes at same time, if one ListNode has two nodes and the other one only has one node, then we condisder the second one has 0.
 
 Add two values togheter and if sum >= 0 we set raise to one so the next sum should increase by one. 
  
