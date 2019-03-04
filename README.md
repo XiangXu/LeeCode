@@ -1,3 +1,3 @@
-# LeeCode
+# LeetCode
 
 just some practices
