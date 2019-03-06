@@ -1,3 +1,1 @@
-# LeetCode
 
-just some practices
