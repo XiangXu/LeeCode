@@ -15,7 +15,7 @@ Output: "bb"
 ## First Solution
 Iterate all characters in that String 
  
-Runtime: **2633 ms ms**
+Runtime: **2633 ms**
 
 ```java
 class Solution 
@@ -71,7 +71,7 @@ Instead of interating all characters, we put them into a hashmap. In this hashma
 
 Loop all the indexes in each arraylist and get substring between each two indexes then check if that substring is longest palindrome or not. 
  
-Runtime: **2633 ms ms**
+Runtime: **2633 ms**
 
 ```java
 class Solution 
