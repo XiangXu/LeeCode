@@ -19,7 +19,7 @@ Assume we are dealing with an environment which could only store integers within
 ## First Solution
 
 If the given integer has only one digit, then we can just return it.
-Use a boolean to track weather the given integer is a minus number or not.
+Use a boolean to track weather the given integer is a negative number or not.
 Use a integer list to store all the numbers. 
 Use %10 to get last digit. 
 Use /10 to get rest digits.
