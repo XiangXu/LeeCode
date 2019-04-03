@@ -77,7 +77,7 @@ class Solution {
 
 ## Second Solution
 
-Removed results array so we don't need another loop at end. Check length each time is enougth.
+remove the array which contains result, so we don't need another loop at end. Check length each time is enougth.
 
 Runtime: **25ms**
 
