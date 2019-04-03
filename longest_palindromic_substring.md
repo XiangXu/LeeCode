@@ -67,9 +67,9 @@ class Solution
 ```
 
 ## Second Solution
-Instead of interating all characters, we put them into a hashmap. In this hashmap, key is each character and value is arraylist which contains all the indexes of each character in the given string. 
+Instead of interating all characters, we put them into a hashmap. In this hashmap, key are all characters and values are arraylists which contain all the indexes of each character in the given string. 
 
-Loop all the indexes in each arraylist and get substring between each two indexes then check if that substring is longest palindrome or not. 
+Loop all indexes in each arraylist and get substring between each two indexes then check if that substring is longest palindrome or not. 
  
 Runtime: **195 ms**
 
