@@ -44,6 +44,8 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 ## First Solution
 Use a hashmap to store Roman numbers and integers
 
+Runtime: **10 ms**
+
 ```java
 class Solution 
 {
