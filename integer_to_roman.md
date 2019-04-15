@@ -129,3 +129,22 @@ class Solution
     }
 }
 ```
+
+## First Solution
+Use for arrays to represet:
+1000, 2000, 3000
+100, 200, 300, 400, 500, 600, 700, 800, 900
+10, 20, 30, 40, 50, 60, 70, 80, 90
+1, 2, 3, 4, 5, 6, 7, 8, 9
+
+Runtime: **4 ms**
+```java
+    public String intToRoman(int num) 
+    {
+        String M[] = {"", "M", "MM", "MMM"};
+        String C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        String X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        String I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        return M[num/1000] + C[(num%1000)/100] + X[(num%100)/10] + I[num%10];
+    }
+```
