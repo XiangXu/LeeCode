@@ -133,7 +133,7 @@ class Solution
 }
 ```
 
-## First Solution
+## Second Solution
 Use for arrays to represet:
 1000, 2000, 3000
 100, 200, 300, 400, 500, 600, 700, 800, 900
