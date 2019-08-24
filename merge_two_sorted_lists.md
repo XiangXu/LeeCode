@@ -60,3 +60,53 @@ class Solution
     }
 }
 ```
+
+## Second Solution
+1. Create a dummy head list node to save the results.
+2. Create an handler point to dummy head list node as a pointer.
+3. Use a while loop to compare value.
+
+Runtime: **0 ms**
+
+```java
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution 
+{
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) 
+    {        
+        ListNode result = new ListNode(0);
+        ListNode handler = result;
+        
+        while(l1 != null && l2 != null)
+        {
+            if(l1.val <= l2.val)
+            {
+                handler.next = l1;
+                l1 = l1.next;
+            }
+            else
+            {
+                handler.next = l2;
+                l2 = l2.next;
+            }
+            handler = handler.next;
+        }
+        
+        if(l1 != null)
+            handler.next = l1;
+        else if(l2 != null)
+            handler.next = l2;
+        
+        return result.next;
+    }
+}
+
+```
