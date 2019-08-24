@@ -111,7 +111,7 @@ class Solution
 
 ```
 
-## Second Solution
+## Third Solution
 We would use recursion but I think it may cause stack overflow in real life.
 
 Runtime: **0 ms**
