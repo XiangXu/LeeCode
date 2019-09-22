@@ -17,7 +17,7 @@ Output: 1->1->2->3->4->4->5->6<br>
 2. Sorted a list 
 3. Inert all values from list into a new list node.
 
-Runtime: **782 ms**
+Runtime: **7 ms**
 
 ```java
 
