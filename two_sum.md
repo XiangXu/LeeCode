@@ -15,7 +15,7 @@ return [0, 1].
 
 Loop through each elements x and find if there is another value that equals to target - x.
 
-Runtime: **45 ms**
+Runtime: **45 ms**  
 Memory: **39 MB**
 
 ```java
@@ -49,7 +49,7 @@ Space complexity: O(1)
 In the first iteration, we add each element's value and its index to the table.
 In the second iteration, if each element's complement exists in the table. Beware that the complement must not be nums[i] itself.
 
-Runtime: **2 ms**
+Runtime: **2 ms**  
 Memory: **41 MB**
 
 ```java
@@ -89,7 +89,7 @@ Space complexity: O(n)
 
 While we iterate and inserting elements into the table, we also look back to check if current element's compelment already exists in the table. If it exists, we have found a solution and return immdediately.
 
-Runtime: **1 ms**
+Runtime: **1 ms**  
 Memory: **42.2 MB**
 
 ```java
