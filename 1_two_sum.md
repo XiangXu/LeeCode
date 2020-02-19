@@ -41,7 +41,7 @@ class Solution
 ### Complexity Analysis
 
 Time Complexity: O(n2)  
-Space complexity: O(1)
+Space Complexity: O(1)
 
 
 ## Approach 2: Two-pass Hash Table
@@ -82,7 +82,7 @@ class Solution
 ### Complexity Analysis
 
 Time Complexity: O(n)  
-Space complexity: O(n)
+Space Complexity: O(n)
 
 
 ## Approach 3: One-pass Hash Table
@@ -119,4 +119,4 @@ class Solution
 ### Complexity Analysis
 
 Time Complexity: O(n)  
-Space complexity: O(n)
+Space Complexity: O(n)
