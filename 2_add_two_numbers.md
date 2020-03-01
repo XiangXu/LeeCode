@@ -57,7 +57,6 @@ class Solution {
         
         while(p != null || q != null)
         {
-            int x = (p != null) ? p.val : 0;
             int y = (q != null) ? q.val : 0;
             int sum = x + y + carry;
             carry = sum / 10;
@@ -77,5 +76,5 @@ class Solution {
 }
 ```
 ### Complexity Analysis
-Time Complexity: O(max(m,n))
+Time Complexity: O(max(m,n))  
 Space Complexity: O(max(m,n))
