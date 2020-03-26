@@ -57,14 +57,16 @@ class Solution {
         
         while(p != null || q != null)
         {
+            int x = (p != null) ? p.val : 0;
             int y = (q != null) ? q.val : 0;
+            
             int sum = x + y + carry;
             carry = sum / 10;
             curr.next = new ListNode(sum % 10);
             curr = curr.next;
-            if (p != null)
+            if( p != null)
                 p = p.next;
-            if (q != null)
+            if(q != null)
                 q = q.next;
         }
         
