@@ -40,8 +40,11 @@ class Solution
 
 ### Complexity Analysis
 
-Time Complexity: O(n2)  
-Space Complexity: O(1)
+**Time Complexity: O($n^2$)**
+
+For each element, we try to find its complement by looping through the rest of array which takes O(n) time. Therefore, the time complexity is O($n^2$)
+
+**Space Complexity: O(1)**
 
 
 ## Approach 2: Two-pass Hash Table
@@ -81,8 +84,13 @@ class Solution
 
 ### Complexity Analysis
 
-Time Complexity: O(n)  
-Space Complexity: O(n)
+**Time Complexity: O(n)** 
+
+We traverse the list containing nn elements exactly twice. Since the hash table reduces the look up time to O(1)O(1), the time complexity is O(n)O(n).
+
+**Space Complexity: O(n)**
+
+The extra space required depends on the number of items stored in the hash table, which stores exactly n elements.
 
 
 ## Approach 3: One-pass Hash Table
@@ -118,5 +126,10 @@ class Solution
 
 ### Complexity Analysis
 
-Time Complexity: O(n)  
-Space Complexity: O(n)
+**Time Complexity: O(n)** 
+
+We traverse the list containing nn elements only once. Each look up in the table costs only O(1)O(1) time.
+
+**Space Complexity: O(n)**
+
+The extra space required depends on the number of items stored in the hash table, which stores at most nn elements.
