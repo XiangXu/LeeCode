@@ -62,8 +62,12 @@ class Solution
 ```
 
 ### Complexity Analysis
-Time Complexity: O(n^3)  
-Space Complexity: O(min(n,m))
+
+**Time Complexity: O(n^3)** 
+
+**Space Complexity: O(min(n,m))**
+
+We need O(k) space for checking a substring has no duplicate characters, where k is the size of the Set. The size of the Set is upper bounded by the size of the string nn and the size of the charset/alphabet mm.
 
 
 ## Second Solution - Sliding Window
@@ -103,8 +107,13 @@ class Solution
 }
 ```
 
-Time Complexity: O(n) 
-Space Complexity: O(min(n,m))
+**Time Complexity: O(n)** 
+
+Time complexity : O(2n)=O(n). In the worst case each character will be visited twice by i and j.
+
+**Space Complexity: O(min(n,m))**
+
+O(min(m,n)). Same as the previous approach. We need O(k) space for the sliding window, where k is the size of the Set. The size of the Set is upper bounded by the size of the string n and the size of the charset/alphabet m.
 
 
 ## Third Solution - Sliding Window Optimized
@@ -132,8 +141,6 @@ class Solution
             }
             ans = Math.max(ans, j-i+1);
             map.put(s.charAt(j), j+1);
-            
-            System.out.println(map);
         }
         
         return ans;
@@ -141,5 +148,6 @@ class Solution
 }
 ```
 
-Time Complexity: O(n) 
-Space Complexity: O(min(n,m))
+**Time Complexity: O(n)** 
+
+**Space Complexity: O(min(n,m))**
