@@ -33,14 +33,21 @@ nums1: 3   5   8   9   14
 nums2: 1   2   7   10  11   12
 
 The four elements must obtain
+
 L1 <= R2
+
 L2 <= R1
 
 if L1 > R2, end = cut1 - 1;
+
 if L2 > R1, start = cut1 + 1;
 
 cut1: the number of elements on left side of cut point in nums1
+
 cut2: the number of elements on left side of cut point in nums2.
+
+Runtime: **12 ms**  
+Memory: **46.1 MB**
 
 ```java
 class Solution 
@@ -88,3 +95,7 @@ class Solution
     }
 }
 ```
+
+**Time Complexity: O(log (m+n)).** 
+
+**Space Complexity: O(l)**
