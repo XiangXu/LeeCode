@@ -29,7 +29,10 @@ P     I
 
 ## First Solution
 
-Runtime: **19 ms**
+Declare an StringBuilder array to store character in zigzag pattern.
+
+Runtime: **4 ms**  
+Memory: **39.6 MB**
 
 ```java
  class Solution 
@@ -67,3 +70,9 @@ Runtime: **19 ms**
 }
 
 ```
+
+**Time Complexity: O(n)**
+
+**Space Complexity: O(N)**
+
+StringBuilder
