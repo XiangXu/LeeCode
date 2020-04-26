@@ -6,11 +6,12 @@ You may assume that each input would have exactly one solution, and you may not 
 
 Example:
 
+```
 Given nums = [2, 7, 11, 15], target = 9,
 
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
-
+```
 ## Approach 1: Brute Force
 
 Loop through each elements x and find if there is another value that equals to target - x.
@@ -40,9 +41,9 @@ class Solution
 
 ### Complexity Analysis
 
-**Time Complexity: O($n^2$)**
+**Time Complexity: O(n<sup>2</sup>)**
 
-For each element, we try to find its complement by looping through the rest of array which takes O(n) time. Therefore, the time complexity is O($n^2$)
+For each element, we try to find its complement by looping through the rest of array which takes O(n) time. Therefore, the time complexity is O(n<sup>2</sup>)
 
 **Space Complexity: O(1)**
 
