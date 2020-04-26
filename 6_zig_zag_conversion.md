@@ -71,7 +71,7 @@ Memory: **39.6 MB**
 
 ```
 
-**Time Complexity: O(n)**
+**Time Complexity: O(N)**
 
 **Space Complexity: O(N)**
 
