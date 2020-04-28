@@ -119,7 +119,6 @@ O(min(m,n)). Same as the previous approach. We need O(k) space for the sliding w
 ## Third Solution - Sliding Window Optimized
 The above solution requires at most 2n steps. In fact, it could be optimized to require only n steps. Instead of using a set to tell if a character exists or not, we could define a mapping of the characters to its index. Then we can skip the characters immediately when we found a repeated character.
 
-
 Runtime: **5 ms**  
 Memory: **39.8 MB**
 

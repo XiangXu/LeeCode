@@ -10,7 +10,9 @@ In this case, the max area of water (blue section) the container can contain is 
 ## First Solution
 In this case, we will simply consider the area for every possible pair of the lines and find out the maximum area out of those.
 
-Runtime: **224 ms**
+Runtime: **353 ms**
+
+Memory: **39.6 MB**
 
 ```java
 
@@ -35,29 +37,39 @@ class Solution {
 
 ```
 
+**Time Complexity: O(n<sup>2</sup>)** 
+
+**Space Complexity: O(1))**
+
+
  ## Second Solution
  Initially we consider the area constituting the exterior most lines. Now, to maximize the area, we need to consider the area between the lines of larger lengths. If we try to move the pointer at the longer line inwards, we won't gain any increase in area, since it is limited by the shorter line. But moving the shorter line's pointer could turn out to be beneficial, as per the same argument, despite the reduction in the width. This is done since a relatively longer line obtained by moving the shorter line's pointer might overcome the reduction in area caused by the width reduction.
- 
+
+Runtime: **2 ms**
+
+Memory: **39.9 MB**
+
  
 ```java
 
 class Solution {
-    public int maxArea(int[] height) {
-        int maxArea = 0;
-        
+    public int maxArea(int[] height) 
+    {
         if(height.length < 2)
-            return maxArea;
+            return 0;
         
+        int maxArea = 0;
         int left = 0;
         int right = height.length - 1;
         
         while(left < right)
         {
-            maxArea = Math.max(maxArea, Math.min(height[left], height[right]) * (right - left));
+            int currentArea = Math.min(height[left], height[right]) * (right - left);
+            maxArea = Math.max(currentArea, maxArea);
             if(height[left] < height[right])
-                left ++;
+                left++;
             else
-                right --;
+                right--;
         }
         
         return maxArea;
@@ -65,3 +77,7 @@ class Solution {
 }
 
 ```
+
+**Time Complexity: O(n)** 
+
+**Space Complexity: O(1))**
