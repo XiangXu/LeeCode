@@ -120,30 +120,32 @@ O(min(m,n)). Same as the previous approach. We need O(k) space for the sliding w
 The above solution requires at most 2n steps. In fact, it could be optimized to require only n steps. Instead of using a set to tell if a character exists or not, we could define a mapping of the characters to its index. Then we can skip the characters immediately when we found a repeated character.
 
 
-Runtime: **747 ms**  
-Memory: **42.7 MB**
+Runtime: **5 ms**  
+Memory: **39.8 MB**
 
 ```java
 class Solution 
 {
     public int lengthOfLongestSubstring(String s) 
     {
-        int n = s.length();
-        int ans = 0;
+        if(s == null || s.length() == 0)
+            return 0;
         
+        int result = 0;
         Map<Character, Integer> map = new HashMap<>();
         
-        for(int i=0, j=0; j<n; j++)
+        for(int i=0, j=0; i<s.length(); i++)
         {
-            if(map.containsKey(s.charAt(j)))
+            if(map.containsKey(s.charAt(i)))
             {
-                i = Math.max(map.get(s.charAt(j)), i);
+                j = Math.max(j, map.get(s.charAt(i)) + 1);
             }
-            ans = Math.max(ans, j-i+1);
-            map.put(s.charAt(j), j+1);
+            
+            map.put(s.charAt(i), i);
+            result = Math.max(i - j + 1, result);
         }
         
-        return ans;
+        return result;
     }
 }
 ```
