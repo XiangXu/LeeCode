@@ -42,41 +42,64 @@ Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
 ## First Solution
-Those values below will cause changes:
-IV, IX, XL, XC, CD, CM
 
-Runtime: **4 ms**
+IV if left < right: 5 - 1 = 4;
+VI if left > right: 5 + 1 = 6;
+
+Runtime: **3 ms**
+Memory: **39.3 MB**
 
 ```java
-
 class Solution 
 {
+    // IV = 4
+    // VI = 6
     public int romanToInt(String s) 
     {
-        int result = 0;
+        if(s == null || s.length() == 0)
+            return 0;
         
-        if(s.indexOf("IV") != -1) result -= 2;
-        if(s.indexOf("IX") != -1) result -= 2;
-        if(s.indexOf("XL") != -1) result -= 20;
-        if(s.indexOf("XC") != -1) result -= 20;
-        if(s.indexOf("CD") != -1) result -= 200;
-        if(s.indexOf("CM") != -1) result -= 200;
-        
-        char[] charArr = s.toCharArray();
-            
-        for(int i=0; i<charArr.length; i++)
+        int result = convertToNumber(s.charAt(0));
+        for(int i=1; i<s.length(); i++)
         {
-            if(charArr[i] == 'M') result += 1000;    
-            if(charArr[i] == 'D') result += 500;
-            if(charArr[i] == 'C') result += 100;            
-            if(charArr[i] == 'L') result += 50;            
-            if(charArr[i] == 'X') result += 10;            
-            if(charArr[i] == 'V') result += 5;            
-            if(charArr[i] == 'I') result += 1;
+            int currentNumber = convertToNumber(s.charAt(i));
+            int previousNumber = convertToNumber(s.charAt(i-1));
+            
+            if(previousNumber < currentNumber)
+            {
+                //IV 
+                // 5 - 1 + (result=1) - 1 = 4;
+                result += currentNumber - 2 * previousNumber;
+            }
+            else
+            {
+                result += currentNumber;
+            }
         }
         
         return result;
     }
+    
+    private int convertToNumber(char c)
+    {
+        int result = 0;
+        
+        switch(c)
+        {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+        }
+            
+        return result;
+    }
 }
-
 ```
+
+**Time Complexity: O(n)**
+
+**Space Complexity: O(1)**
