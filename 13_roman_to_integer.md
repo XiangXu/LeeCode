@@ -47,6 +47,7 @@ IV if left < right: 5 - 1 = 4;
 VI if left > right: 5 + 1 = 6;
 
 Runtime: **3 ms**
+
 Memory: **39.3 MB**
 
 ```java

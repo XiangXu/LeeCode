@@ -53,6 +53,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 ## First Solution
 
 Runtime: **14 ms**  
+
 Memory: **40.3 MB**
 
 ```java
