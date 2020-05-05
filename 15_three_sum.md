@@ -69,7 +69,7 @@ Use while loop to skip duplicate
 
 Runtime: **24 ms**
 
-Memory: **42.8 MB MB**
+Memory: **42.8 MB**
 
 ```java
 class Solution 

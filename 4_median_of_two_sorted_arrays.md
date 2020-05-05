@@ -26,7 +26,6 @@ The median is (2 + 3)/2 = 2.5
 When we see log(m+n), we know we need to use **Binay Search**.
 
 nums3: 1   2   3   5   7   8   9   11   12
-
 	       
 nums1: 3   5   8   9   14
                

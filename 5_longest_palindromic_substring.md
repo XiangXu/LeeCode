@@ -55,7 +55,6 @@ class Solution
     
     private int expendFromCenter(String s,int left, int right)
     {
-        String current = "";
         while(left >=0 && right < s.length() && s.charAt(left) == s.charAt(right))
         {   
             left --;
