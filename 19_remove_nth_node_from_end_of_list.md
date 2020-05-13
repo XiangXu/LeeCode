@@ -10,14 +10,18 @@ After removing the second node from the end, the linked list becomes 1->2->3->5.
 
 
 ## First Solution
-1. Get the length of given list node.
-2. Find the index and unlink it from the given list 
+Fast Slow Pointers
+dummyHead->1->2->3->4->5
+                 f
+           s
+                       f
+                 s
 
+Runtime: **0 ms**
 
-Runtime: **782 ms**
+Memory: **38 MB**
 
 ```java
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -29,30 +33,29 @@ Runtime: **782 ms**
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) 
     {
-        int length = 0;
-        ListNode result = new ListNode(0);
-        result.next = head;
-        ListNode first = head;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode fast = dummyHead;
+        ListNode slow = dummyHead;
         
-        while(first != null)
+        for(int i=0; i<=n; i++)
         {
-            length += 1;
-            first = first.next;
+            fast = fast.next;
         }
         
-        length -= n;
-        first = result;
-
-        while(length > 0)
+        while(fast != null)
         {
-            length--;
-            first = first.next;
+            fast = fast.next;
+            slow = slow.next;
         }
         
-        first.next = first.next.next;
+        slow.next = slow.next.next;
         
-        return result.next;
+        return dummyHead.next;
     }
 }
-
 ```
+
+**Time Complexity: O(n)** 
+
+**Space Complexity: O(1)**
