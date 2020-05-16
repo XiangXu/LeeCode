@@ -4,69 +4,16 @@ Merge two sorted linked lists and return it as a new list. The new list should b
 
 Example:
 
-Input: 1->2->4, 1->3->4<br>
-Output: 1->1->2->3->4->4<br>
-
-## First Solution
-1. Insert all integer numbers into an array list.
-2. Sort array list
-3. Insert integer back into list node. 
-
-Runtime: **3 ms**
-
-```java
-class Solution
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution 
-{
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) 
-    {        
-        List<Integer> list = new ArrayList<>();
-        addValueIntoList(l1, list);
-        addValueIntoList(l2, list);
-        Collections.sort(list);
-        
-        ListNode result = new ListNode(0);
-        ListNode currListNode = result;
-        
-        for(int i=0; i<list.size(); i++)
-        {
-            ListNode temp = new ListNode(list.get(i));
-            currListNode.next = temp;
-            currListNode = currListNode.next;
-        }
-        
-        return result.next;
-    }
-    
-    private void addValueIntoList(ListNode l1, List<Integer> list)
-    {
-        if(list == null || l1 == null)
-            return;
-        
-        list.add(l1.val);
-        while(l1.next != null)
-        {
-            list.add(l1.next.val);
-            l1 = l1.next;
-        }
-    }
-}
+```
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
 ```
 
-## Second Solution
-1. Create a dummy head list node to save the results.
-2. Create an handler point to dummy head list node as a pointer.
-3. Use a while loop to compare value.
+## First Solution
 
 Runtime: **0 ms**
+
+Memory: **39.1 MB**
 
 ```java
 
@@ -111,10 +58,15 @@ class Solution
 
 ```
 
-## Third Solution
-We would use recursion but I think it may cause stack overflow in real life.
+**Time Complexity: O(n)** 
+
+**Space Complexity: O(n)**
+
+## Second Solution
 
 Runtime: **0 ms**
+
+Memory: **38.8 MB**
 
 ```java
 
@@ -152,3 +104,7 @@ class Solution
 }
 
 ```
+
+**Time Complexity: O(n)** 
+
+**Space Complexity: O(n)**
