@@ -11,6 +11,8 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
 
 ## First solution
 
+Depth First Search
+
 Runtime: **0 ms**
 
 Memory: **38 MB**
