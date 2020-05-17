@@ -122,6 +122,8 @@ The above solution requires at most 2n steps. In fact, it could be optimized to 
 Runtime: **5 ms**  
 Memory: **39.8 MB**
 
+Input: "abcabcbb"=
+
 ```java
 class Solution 
 {

@@ -2,22 +2,22 @@
 
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
-Example:<br>
-
-Input:<br>
-[<br>
-  1->4->5,<br>
-  1->3->4,<br>
-  2->6<br>
-]<br>
-Output: 1->1->2->3->4->4->5->6<br>
+Example:
+```
+Input:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+Output: 1->1->2->3->4->4->5->6
+```
 
 ## First Solution
-1. Iterator all lists and add values into a list
-2. Sorted a list 
-3. Inert all values from list into a new list node.
 
-Runtime: **7 ms**
+Runtime: **14 ms**
+
+Memory: **45.3 MB**
 
 ```java
 
@@ -59,3 +59,7 @@ class Solution
 }
 
 ```
+
+**Time Complexity: O(n<sup>2</sup>)** 
+
+**Space Complexity: O(m+n)**

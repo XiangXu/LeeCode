@@ -30,9 +30,10 @@ Output: true
 
 
 ## First Solution
-I didn't think about to use a stack until I had a look at solution.
 
 Runtime: **1 ms**
+
+Memory: **37.7 MB**
 
 ```java
 
@@ -57,3 +58,8 @@ class Solution
     }
 }
 ```
+
+
+**Time Complexity: O(n)** 
+
+**Space Complexity: O(n)**
