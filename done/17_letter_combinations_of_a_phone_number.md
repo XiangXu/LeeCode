@@ -11,6 +11,54 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
 
 ## First solution
 
+Runtime: **5 ms**
+
+Memory: **39.9 MB**
+
+```java
+class Solution 
+{
+    private static final String[] KEYBOARD = {
+        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+    };
+    
+    public List<String> letterCombinations(String digits) 
+    {
+        List<String> result = new ArrayList<String>();
+        
+        if(digits == null || digits.length() == 0)
+            return result;
+        
+        result.add("");
+        for(int i=0; i<digits.length(); i++)
+            result = combined(KEYBOARD[digits.charAt(i)-'0'], result);
+        
+        return result;
+    }
+    
+    private List<String> combined(String digit, List<String> result)
+    {
+        List<String> current = new ArrayList<>();
+        for(int i=0; i<digit.length(); i++)
+        {
+            for(String str: result)
+            {
+                current.add(str + digit.charAt(i));
+            }
+        }
+        
+        return current;
+    }
+}
+```
+
+**Time Complexity: O(n<sup>3</sup>)** 
+
+**Space Complexity: O(n)**
+
+
+## Second solution
+
 Depth First Search
 
 Runtime: **0 ms**
