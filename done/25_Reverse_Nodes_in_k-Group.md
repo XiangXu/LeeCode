@@ -82,6 +82,10 @@ class Solution
 }
 ```
 
+Reference
+
+https://juejin.im/post/5e3d3f25e51d45270c276fe3
+
 **Time Complexity: O(n)** 
 
 **Space Complexity: O(n)**
