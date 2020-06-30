@@ -20,6 +20,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 2. Search array from right to left, find the first number bigger than the first Small number - firstBigIndex
 3. Reverse the numbers behind firstSmallIndex
  
+```
 // 1   2   7   4   3   1
 //     ^
 // 1   2   7   4   3   1
@@ -27,6 +28,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 // 1   3   7   4   2   1
 //     ^           ^
 // 1   3   1   2   4   7
+```
 
 Runtime: **0 ms**
 

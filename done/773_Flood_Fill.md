@@ -28,6 +28,7 @@ to the starting pixel
 
 ## First Solution - Depth First Search DFS
 
+```
 Before:
 [1,1,1]
 [1,1,0]
@@ -39,6 +40,7 @@ After:
 [2,2,2]
 [2,2,0]
 [2,0,1]
+```
 
 Runtime: **0 ms**
 
