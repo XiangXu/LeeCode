@@ -77,8 +77,6 @@ class Solution
         {
             int[] point = queue.poll();
             
-            System.out.println("value: " + grid[point[0]][point[1]] + " number: " + point[2]);
-            
             for(int[] direction : directions)
             {
                 int x = point[0] + direction[0];
