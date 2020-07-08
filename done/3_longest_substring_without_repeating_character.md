@@ -1,4 +1,4 @@
-# Longest Substring Without Repeating Characters
+# Longest Substring Without Repeating Characters - (Medium)
 
 Given a string, find the length of the longest substring without repeating characters.
 
@@ -19,110 +19,20 @@ Output: 3
 Explanation: The answer is "wke", with the length of 3.   
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
+## Solution
 
-## First Solution - Brute Force
+这道题目是一个典型的滑动窗口的问题, 具体步骤如下:
 
-Check all the substring one by one to see if it has no duplicate character.
+1. 首先我们需要用一个HashMap来存储每次遍历的字符和index的位置, 这样的好处是我们可以跳过一些重复字符.
+2. 假设我们有两个指针A和B开始都在index等于0的位置, 然后我们向后移动指针B.
+3. 如果指针B当前字符不在HashMap里的话, 将当前字符和index存入HashMap.
+4. 如果指针B当前字符在HashMap的话，说明有重复的字符。这时候从HashMap中拿到重复字符的index, 然后将A = index+1.
 
-Runtime: **Time Limit Exceeded**  
-Memory: **N/A**
+## 空间时间复杂度分析:
 
-```java
-class Solution 
-{
-    public int lengthOfLongestSubstring(String s) 
-    {
-        int n = s.length();
-        int result = 0;
-        for(int i = 0; i < n; i++)
-        {
-            for(int j = i + 1; j <= n; j++)
-            {
-                if(allUnique(s, i, j))
-                    result = Math.max(result, j - i);
-            }
-        }
-        return result;
-    }
-    
-    private boolean allUnique(String s, int start, int end)
-    {
-        Set<Character> set = new HashSet<>();
-        for(int i = start; i < end; i++)
-        {
-            Character ch = s.charAt(i);
-            if(set.contains(ch))
-                return false;
-            set.add(ch);
-        }
-        
-        return true;
-    }
-}
-```
+* **Time Complexity: O(n)**: 遍历字符串S所需要的时间.
+* **Space Complexity: O(min(m, n))**: 我们需要O(k)来存储不重复的字符, m表示字符串s的长度而n表示字母表的上限.
 
-### Complexity Analysis
-
-**Time Complexity: O(n^3)** 
-
-**Space Complexity: O(min(n,m))**
-
-We need O(k) space for checking a substring has no duplicate characters, where k is the size of the Set. The size of the Set is upper bounded by the size of the string nn and the size of the charset/alphabet mm.
-
-
-## Second Solution - Sliding Window
-
-A sliding window is an abstract concept commonly used in array/string problems.   
-A window is a range of elements in the array/string which usually defined by the start and end indices, i.e. [i, j)[i,j) (left-closed, right-open).   
-A sliding window is a window "slides" its two boundaries to the certain direction. For example, if we slide [i, j)[i,j) to the right by 11 element, then it becomes [i+1, j+1)[i+1,j+1) (left-closed, right-open).
-
-Runtime: **8 ms**  
-Memory: **41.6 MB**
-
-```java
-class Solution 
-{
-    public int lengthOfLongestSubstring(String s) 
-    {
-        int n = s.length();
-        int ans = 0, i = 0, j = 0;
-        
-        Set<Character> set = new HashSet<>();
-        
-        while(i < n && j < n)
-        {
-            if(!set.contains(s.charAt(j)))
-            {
-                set.add(s.charAt(j++));
-                ans = Math.max(ans, j - i);
-            }
-            else
-            {
-                set.remove(s.charAt(i++));
-            }
-        }
-        
-        return ans; 
-    }
-}
-```
-
-**Time Complexity: O(n)** 
-
-Time complexity : O(2n)=O(n). In the worst case each character will be visited twice by i and j.
-
-**Space Complexity: O(min(n,m))**
-
-O(min(m,n)). Same as the previous approach. We need O(k) space for the sliding window, where k is the size of the Set. The size of the Set is upper bounded by the size of the string n and the size of the charset/alphabet m.
-
-
-## Third Solution - Sliding Window Optimized
-The above solution requires at most 2n steps. In fact, it could be optimized to require only n steps. Instead of using a set to tell if a character exists or not, we could define a mapping of the characters to its index. Then we can skip the characters immediately when we found a repeated character.
-
-Runtime: **5 ms**  
-Memory: **39.8 MB**
-
-Input: "abcabcbb"=
 
 ```java
 class Solution 
@@ -132,25 +42,22 @@ class Solution
         if(s == null || s.length() == 0)
             return 0;
         
-        int result = 0;
         Map<Character, Integer> map = new HashMap<>();
+
+        int result = 0;
+        int i=0;
         
-        for(int i=0, j=0; i<s.length(); i++)
+        for(int j=0; j<s.length(); j++)
         {
-            if(map.containsKey(s.charAt(i)))
-            {
-                j = Math.max(j, map.get(s.charAt(i)) + 1);
-            }
+            char currChar = s.charAt(j);
+            if(map.containsKey(currChar))
+                i = Math.max(i, map.get(currChar) + 1);
             
-            map.put(s.charAt(i), i);
-            result = Math.max(i - j + 1, result);
+            map.put(currChar, j);
+            result = Math.max(j-i+1, result);
         }
         
         return result;
     }
 }
 ```
-
-**Time Complexity: O(n)** 
-
-**Space Complexity: O(min(n,m))**

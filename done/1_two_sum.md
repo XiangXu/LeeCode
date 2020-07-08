@@ -1,4 +1,4 @@
-# Two Sum
+# Two Sum - (Easy)
 
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
@@ -12,125 +12,48 @@ Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 ```
-## Approach 1: Brute Force
 
-Loop through each elements x and find if there is another value that equals to target - x.
+## 解法 
 
-Runtime: **45 ms**  
-Memory: **39 MB**
+这道题目主要在于使用HashMap来储存数组当前的值和数组的index, 具体步骤如下:
 
-```java
-class Solution 
-{
-    public int[] twoSum(int[] nums, int target) 
-    {
-        for(int i=0; i<nums.length; i++)
-        {
-            for(int j=i+1; j<nums.length; j++)
-            {
-                if(nums[i] + nums[j] == target)
-                {
-                    return new int[] { i, j };
-                }
-            }
-        }
-        throw new IllegalArgumentException("No two sum solution");
-    } 
-}
-```
-
-### Complexity Analysis
-
-**Time Complexity: O(n<sup>2</sup>)**
-
-For each element, we try to find its complement by looping through the rest of array which takes O(n) time. Therefore, the time complexity is O(n<sup>2</sup>)
-
-**Space Complexity: O(1)**
+1. 我们可以遍历整个数组，然后用所给的taget减去数组中的每个数.
+2. 如果数组中的key没有当前的差值,则当前数组的值和当前index存入HashMap的key和value.
+3. 如果数组中的key有当前的差值，则直接返回当前for循环的i和HashMap中key对应的index.
 
 
-## Approach 2: Two-pass Hash Table
+## 空间时间复杂度分析:
 
-In the first iteration, we add each element's value and its index to the table.
-In the second iteration, if each element's complement exists in the table. Beware that the complement must not be nums[i] itself.
-
-Runtime: **2 ms**  
-Memory: **41 MB**
+* **Time Complexity: O(n)**: 我们遍历来数组一遍，解法中包含来一个for循环.
+* **Space Complexity: O(n)**: 我们用了一个HashMap来存储差值和index.
 
 ```java
 class Solution 
 {
     public int[] twoSum(int[] nums, int target) 
-    {
+    {   
+        if(nums == null || nums.length == 0)
+            return nums;
+        
+        int[] result = new int[2];
         Map<Integer, Integer> map = new HashMap<>();
         
         for(int i=0; i<nums.length; i++)
         {
-            map.put(nums[i], i);
-        }
-        
-        for(int i=0; i<nums.length; i++)
-        {
-            int complement = target - nums[i];
-            if(map.containsKey(complement) && map.get(complement) != i)
+            int tmp = target - nums[i];
+           
+            if(map.containsKey(tmp))
             {
-                return new int[] { i, map.get(complement)};
+                result[0] = i;
+                result[1] = map.get(tmp);
+            }    
+            else
+            {
+                map.put(nums[i], i);
             }
         }
         
-        
-        throw new IllegalArgumentException("No two sum solution");
-    } 
+        return result;
+    }
 }
 ```
-
-### Complexity Analysis
-
-**Time Complexity: O(n)** 
-
-We traverse the list containing nn elements exactly twice. Since the hash table reduces the look up time to O(1), the time complexity is O(n).
-
-**Space Complexity: O(n)**
-
-The extra space required depends on the number of items stored in the hash table, which stores exactly n elements.
-
-
-## Approach 3: One-pass Hash Table
-
-While we iterate and inserting elements into the table, we also look back to check if current element's compelment already exists in the table. If it exists, we have found a solution and return immdediately.
-
-Runtime: **1 ms**  
-Memory: **42.2 MB**
-
-```java
-class Solution 
-{
-    public int[] twoSum(int[] nums, int target) 
-    {
-        Map<Integer, Integer> map = new HashMap<>();
-        
-        for(int i=0; i<nums.length; i++)
-        {
-            int complement = target - nums[i];
-            
-            if(map.containsKey(complement))
-            {
-                return new int[]{i, map.get(complement)};
-            }
-            
-            map.put(nums[i], i);
-        }
-        
-        throw new IllegalArgumentException("No two sum solution");
-    } 
-}
-```
-
-### Complexity Analysis
-
-**Time Complexity: O(n)** 
-
-We traverse the list containing nn elements only once. Each look up in the table costs only O(1) time.
-
-**Space Complexity: O(n)**
-
-The extra space required depends on the number of items stored in the hash table, which stores at most nn elements.

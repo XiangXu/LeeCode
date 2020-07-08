@@ -1,4 +1,4 @@
-# Add Two Numbers
+# Add Two Numbers - (Medium)
 
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
@@ -21,23 +21,23 @@ Explanation: 342 + 465 = 807.
  */
 ```
 
-## First Solution
+## Solution
 
-1. Initialize current node to dummy head of the returning list.
-2. Initialize carry to 00.
-3. Initialize pp and qq to head of l1l1 and l2l2 respectively.
-4. Loop through lists l1l1 and l2l2 until you reach both ends.
-   Set xx to node pp's value. If pp has reached the end of l1l1, set to 00.
-   Set yy to node qq's value. If qq has reached the end of l2l2, set to 00.
-   Set sum = x + y + carrysum=x+y+carry.
-   Update carry = sum / 10carry=sum/10.
-   Create a new node with the digit value of (sum \bmod 10)(summod10) and set it to current node's next, then advance current node to next.
-   Advance both pp and qq.
-5. Check if carry = 1carry=1, if so append a new node with digit 11 to the returning list.
-6. Return dummy head's next node.
- 
-Runtime: **2 ms**  
-Memory: **41.4 MB**
+一般关于ListNode的题目我觉得要注意两个点:
+
+1. 只要关于ListNode的题目大部分的话需要创建一个dummyHead初始化一个值然后最终的结果为dummyHead.next. 
+2. 在遍历所给的ListNode的时候最好也是用一个新的ListNode指向所给的ListNode, 不然的话有可能会改变所给ListNode的值或者结构**.
+
+这道题感觉也没有太大的难度, 解法步骤如下:
+
+1. 同时遍历两个ListNode然后把每个值加起来.
+2. 如果两个数的和大于10来的话, 那么当前的值就应该是10取模以后的值, 然后把1传递给下一次计算.
+3. 需要注意的是如果最后一位的结果大于10的话需要再加一个1.
+
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(max(m, n))**: m和n表示l1和l2的长度, 所以时间复杂度是遍历两个ListNode中较长的那个所花费的时间.
+* **Space Complexity: O(max(m, n))**: m和n表示l1和l2的长度, 最总结果dummyHead最坏的情况是O(max(m, n))+1.
 
 ```java
 /**
@@ -77,12 +77,3 @@ class Solution {
     }
 }
 ```
-### Complexity Analysis
-
-**Time complexity : O(max(m, n))**  
-
-Assume that m and n represents the length of l1 and l2 respectively, the algorithm above iterates at most max(m,n) times.
-
-**Space complexity : O(max(m,n))** 
-
-The length of the new list is at most max(m,n)+1.
