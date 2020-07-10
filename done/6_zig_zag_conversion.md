@@ -1,4 +1,4 @@
-# ZigZag Conversion
+# ZigZag Conversion - (Medium)
 
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 P   A   H   N
@@ -22,57 +22,52 @@ Output: "PINALSIGYAHRPI"
 
 Explanation:
 
+```
 P     I    N
 A   L S  I G
 Y A   H R
 P     I
+```
 
-## First Solution
+## Solution
 
-Declare an StringBuilder array to store character in zigzag pattern.
+这道题的解法其实挺直接的, 我们根据numRows的数量来创建相同数量的StringBuilder数组, 然后我们还需要一个boolea来决定是否需要变化顺序, 最后我们遍历字符串.
 
-Runtime: **4 ms**  
-Memory: **39.6 MB**
+当我在写代码的时候changeDirection = !changeDirection不知道为什么我没有想到!
+
+* **Time Complexity: O(n)**: 这里遍历字符串和初始化StringBuilder数组都需要n的时间.
+* **Space Complexity: O(n)**: 这里我们用了一个StringBuilder的数组来存储结果.
 
 ```java
- class Solution 
+class Solution 
 {
     public String convert(String s, int numRows) 
     {
+        if(s == null || s.length() == 0 || numRows <= 0)
+            return s;
+        
         if(numRows == 1)
             return s;
         
-        StringBuilder[] sbArray = new StringBuilder[numRows];
-        for(int i=0; i < numRows; i++)
-        {
-            sbArray[i] = new StringBuilder();
-        }
+        StringBuilder[] sb = new StringBuilder[numRows];
+        for(int i=0; i<numRows; i++)
+            sb[i] = new StringBuilder();
         
-        int currentRow = 0;
-        boolean directionChange = false;
-        
-        for(char c: s.toCharArray())
-        {
-            sbArray[currentRow].append(c);
-            if(currentRow == 0 || currentRow == numRows -1)
-                directionChange = !directionChange;
+        int index = 0;
+        boolean changeDirection = false;
+        for(int i=0; i<s.length(); i++)
+        { 
+            sb[index].append(s.charAt(i));
+            if(index == 0 || index == numRows-1)
+                changeDirection = !changeDirection;
             
-            currentRow += directionChange ? 1 : -1;
+            index += changeDirection ? 1 : -1;
         }
         
-        for(int i=1; i<sbArray.length; i++)
-        {
-            sbArray[0].append(sbArray[i]);
-        }
+        for(int i=1; i<sb.length; i++)
+            sb[0].append(sb[i].toString());
         
-        return sbArray[0].toString();
+        return sb[0].toString();
     }
 }
-
 ```
-
-**Time Complexity: O(N)**
-
-**Space Complexity: O(N)**
-
-StringBuilder
