@@ -35,6 +35,8 @@ P     I
 
 当我在写代码的时候changeDirection = !changeDirection不知道为什么我没有想到!
 
+## 空间时间复杂度分析:
+
 * **Time Complexity: O(n)**: 这里遍历字符串和初始化StringBuilder数组都需要n的时间.
 * **Space Complexity: O(n)**: 这里我们用了一个StringBuilder的数组来存储结果.
 

@@ -1,4 +1,4 @@
-# Search Suggestions System
+# Search Suggestions System - (Medium)
 
 Given an array of strings products and a string searchWord. We want to design a system that suggests at most three product names from products after each character of searchWord is typed. Suggested products should have common prefix with the searchWord. If there are more than three products with a common prefix return the three lexicographically minimums products.
 
@@ -50,11 +50,18 @@ Constraints:
 * 1 <= searchWord.length <= 1000
 * All characters of searchWord are lower-case English letters
 
-## First Solution
+## Solution
 
-Runtime: **55 ms**
+拿到这道题首先我们发现返回的结果需要按照字母的顺序来排序, 那么我们就需要现将products里面的字符串先进行一个排序.
 
-Memory: **58.2 MB**
+然后我们看题目知道要返回product里包含common prefix的字符串, 那么我们就想到了要用String.startsWith()方法.
+
+这道题我感觉主要就是考你会不会用Arrays.sort的方法来将字符串进行一个排序.
+
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(n<sup>2</sup>)**: 这里我们用两个两个for循环来遍历products和searchword.
+* **Space Complexity: O(n<sup>2</sup>)**: 这里我们用了一个List<List<String>>的数组来存储结果.
 
 
 ```java
@@ -62,33 +69,27 @@ class Solution
 {
     public List<List<String>> suggestedProducts(String[] products, String searchWord) 
     {
-        List<List<String>> list = new ArrayList<>();
-        PriorityQueue<String> queue = new PriorityQueue<String>((a, b) -> a.compareTo(b));
-
-        for(int i = 1; i<=searchWord.length(); i++)
+        if(products == null || products.length == 0 || searchWord == null || searchWord.length() == 0)
+            return Collections.emptyList();
+        
+        Arrays.sort(products, (a, b) -> a.compareTo(b));
+        
+        List<List<String>> result = new ArrayList<>();
+        
+        for(int i=1; i<=searchWord.length(); i++)
         {
-            String temp = searchWord.substring(0, i);
+            String str = searchWord.substring(0, i);
+            List<String> tmpList = new ArrayList<>();
             for(String product : products)
             {
-                if(product.startsWith(temp))
-                    queue.offer(product);
+                if(product.startsWith(str) && tmpList.size() < 3)
+                    tmpList.add(product);
             }
-            List<String> tempList = new ArrayList<>();
-            for(int j = 0; j<3; j++)
-            {
-                if(queue.peek() != null)
-                    tempList.add(queue.poll());
-            }
-
-            queue.clear();
-            list.add(tempList);
+            result.add(tmpList);
         }
-
-        return list;
+        
+        return result;
     }
 }
 ```
 
-**Time Complexity: O(n<sup>2</sup>)**
-
-**Space Complexity: O(n)**
