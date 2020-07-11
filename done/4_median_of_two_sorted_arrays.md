@@ -92,12 +92,12 @@ class Solution
         // cut1 and cut2 are used to show how many numbers on the left side of the cut point
         int cut1 = 0;
         int cut2 = 0;
-        int left = 0;
-        int right = len1;
+        int start = 0;
+        int end = len1;
         
-        while(left <= right)
+        while(start <= end)
         {
-            cut1 = (left + right) / 2;
+            cut1 = start + (end - start) / 2;
             cut2 = len / 2 - cut1;
             
             int L1 = (cut1 == 0) ? Integer.MIN_VALUE : nums1[cut1-1];
@@ -106,9 +106,9 @@ class Solution
             int R2 = (cut2 == len2) ? Integer.MAX_VALUE : nums2[cut2];
             
             if(R1 < L2)
-                left = cut1 + 1;
+                start = cut1 + 1;
             else if(L1 > R2)
-                right = cut1 - 1;
+                end = cut1 - 1;
             else
             {
                 if(len % 2 == 0)

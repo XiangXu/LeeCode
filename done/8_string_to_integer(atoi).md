@@ -1,4 +1,4 @@
-# String to Integer (atoi)
+# String to Integer (atoi) - (Medium)
 
 Implement atoi which converts a string to an integer.
 
@@ -55,69 +55,67 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
              Thefore INT_MIN (−231) is returned.
 ```             
 
-## First Solution
+## Solution
 
-Learned a trick 
+这道题感觉其实挺简单的, 就是要把所有的情况都考虑到然后将字符转换成long类型然后判断一下边界的情况.
+
+这里后来看答案学到来一个将char快速转换成int的技巧:
+
 ```
  int a = str.charAt(-) -'0';
 ```
+## 空间时间复杂度分析:
 
-That's a clever trick. char's are actually of the same type / length as shorts. Now when you have a char that represents a ASCII/unicode digit (like '1'), and you subtract the smallest possible ASCII/unicode digit from it (e.g. '0'), then you'll be left with the digit's corresponding value (hence, 1)
-
-Because char is the same as short (although, an unsigned short), you can safely cast it to an int. And the casting is always done automatically if arithmetics are involved
-
-Reference:
-
-https://stackoverflow.com/questions/4318263/java-subtract-0-from-char-to-get-an-int-why-does-this-work
- 
-
-Runtime: **5 ms**  
-Memory: **40 MB**
-
+* **Time Complexity: O(n)**: 这里n指的是所给str的长度.
+* **Space Complexity: O(1)**: 这里只存储来一些变量而已.
 
 ```java
-class Solution {
+class Solution 
+{
     public int myAtoi(String str) 
     {
-        if(str == null)
+        if(str == null || str.length() == 0)
             return 0;
         
         str = str.trim();
         if(str.length() == 0)
             return 0;
         
-        long result = 0;
-        int start = 0;
-        int sign = 1;
-        
         char firstChar = str.charAt(0);
-        if(firstChar == '-')
+        int sign = 1;
+        long result = 0;
+        if(!Character.isDigit(firstChar))
         {
-            start = 1;
-            sign = -1;
+            if(firstChar == '+')
+            {
+                sign = 1;
+            }
+            else if(firstChar == '-')
+            {
+                sign = -1;
+            }
+            else
+            {
+                return 0;
+            }
         }
-        else if(firstChar == '+')
+        else
         {
-            start = 1;
-            sign = 1;
+            result = firstChar - '0';
         }
         
-        for(int i=start; i<str.length(); i++)
+        for(int i=1; i<str.length(); i++)
         {
-            if(!Character.isDigit(str.charAt(i)))
+            char currChar = str.charAt(i);
+            if(!Character.isDigit(currChar))
                 break;
             
-            result = result * 10 + Character.getNumericValue(str.charAt(i));
-
+            result = result * 10 + currChar-'0';
             if(result > Integer.MAX_VALUE)
                 return sign > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
         }
         
-        return (int)result * sign;
-        
+        return (int) result * sign;
     }
 }
 ```
-**Time Complexity: O(N)**
-
-**Space Complexity: O(1)**

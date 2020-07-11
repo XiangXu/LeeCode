@@ -37,6 +37,13 @@ Assume we are dealing with an environment which could only store integers within
 3 * 10 + 2 = 32 * 10 + 1 = 321
 ```
 
+这里要注意一个越界的问题, **所以我们可以先用long类型来表示结果, 最后转换成int. 但是如果当前long的值超过了Integer.MAX_VALUE, 我们直接返回0**.
+
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(log(n))**: 这里差不多是log10.
+* **Space Complexity: O(1)**: 这里只存储来一些变量而已.
+
 
 ```java
 class Solution 
@@ -58,6 +65,4 @@ class Solution
         return (int)result;
     }
 }
-
-
 ```
