@@ -1,4 +1,4 @@
-# Palindrome Number
+# Palindrome Number - (Easy)
 
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
@@ -26,71 +26,37 @@ Follow up:
 
 Coud you solve it without converting the integer to a string?
 
-## First Solution
- 
-Runtime: **38 ms**
-Memory: **42.78 MB**
+## Solution
+
+这道题没有太大的难度, 判断一个数是不是回文其实我们只要将这个数反转过来, 如果反转以后的结果还一样, 那么这个数字就是回文.
+
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(logn)**: 每次将所给数字除以10
+* **Space Complexity: O(1)**: 只声明了一些变量
 
 ```java
-class Solution {
+public class Solution 
+{
     public boolean isPalindrome(int x) 
-    {
+    {   
         if(x < 0)
             return false;
         
-        int reversedNum = 0;
-        int originalX = x;
-        while(x != 0)
+        if(x >=0 && x <= 9)
+            return true;
+        
+        int reverse = 0;
+        int tmp = x;
+        
+        while(tmp > 0)
         {
-            reversedNum = reversedNum * 10 + x % 10;
-            x = x / 10;
-        }
-
-        return originalX == reversedNum ;
-    }
-}
-```
-
-**Time Complexity: log<sub>10</sub><sup>n</sup>**
-
-We divided the input by 10 for every iteration, so the time complexity is log<sub>10</sub><sup>n</sup>
-
-**Space Complexity: O(1)**
-
- ## Second Solution
- 
-Runtime: **5 ms**
-Memory: **40 MB**
-
-```java
-public class Solution {
-    public boolean isPalindrome(int x) 
-    {
-        // Special cases:
-        // As discussed above, when x < 0, x is not a palindrome.
-        // Also if the last digit of the number is 0, in order to be a palindrome,
-        // the first digit of the number also needs to be 0.
-        // Only 0 satisfy this property.
-        if(x < 0 || (x % 10 == 0 && x != 0)) {
-            return false;
-        }
-
-        int revertedNumber = 0;
-        while(x > revertedNumber) {
-            revertedNumber = revertedNumber * 10 + x % 10;
-            x /= 10;
+            reverse = reverse * 10 + tmp % 10;
+            tmp = tmp / 10;
         }
         
-
-        // When the length is an odd number, we can get rid of the middle digit by revertedNumber/10
-        // For example when the input is 12321, at the end of the while loop we get x = 12, revertedNumber = 123,
-        // since the middle digit doesn't matter in palidrome(it will always equal to itself), we can simply get rid of it.
-        return x == revertedNumber || x == revertedNumber/10;
+        return x == reverse;
     }
 }
 ```
-**Time Complexity: log<sub>10</sub><sup>n</sup>**
 
-We divided the input by 10 for every iteration, so the time complexity is log<sub>10</sub><sup>n</sup>
-
-**Space Complexity: O(1)**
