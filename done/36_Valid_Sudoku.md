@@ -1,4 +1,4 @@
-# Valid Sudoku - (Medium)
+# Valid Sudoku - (Medium)`
 
 Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
 
@@ -66,13 +66,21 @@ if(!set.contains(val))
 ```
 但是其实set.add(val)的方法返回类型就是boolean, 如果set中已经存在了当前的val值, 那么这个add的方法就会直接的返回false. 这个是我之前不知道的, 学习了!
 
-这道题目另外的一个难点是如何得到3*3的row和column的index, 具体计算如下:
+这道题目另外的一个难点是如何得到3*3的row和column的index, 我们需要确保每一个sub box的数字没有重复, 具体计算如下:
 ```
-int rowIndex = 3 * (i / 3);
-int colIndex = 3 * (i % 3);
+int subRow = 3 * (i / 3) + j / 3;
+int subCol = 3 * (i % 3) + j % 3;
+
+其实3 * (i/3) 和 3*(i % 3) 是计算sub box的起始点的row和column:
+
+(0, 0), (0, 3), (0, 6)
+(3, 0), (3, 3), (3, 6)
+(6, 0), (6, 3), (6, 6)
+
 ```
 
-这样的话rowIndex的值就会为: 0, 0, 0, 3, 3, 3, 6, 6, 6. 而colIndex的值会一只为: 0, 1, 2, 0, 1, 2, 0, 1, 2.
+这样的话就会从左到右从上到下遍历sub box中的每一个数.
+
 
 ## 空间时间复杂度分析:
 
@@ -84,26 +92,35 @@ class Solution
 {
     public boolean isValidSudoku(char[][] board) 
     {
-        for(int i = 0; i<9; i++)
+        if(board == null || board.length != 9 || board[0].length != 9)
+            return false;
+        
+        for(int i=0; i<board.length; i++)
         {
-            HashSet<Character> rows = new HashSet<Character>();
-            HashSet<Character> cols = new HashSet<Character>();
-            HashSet<Character> cube = new HashSet<Character>();
-            for (int j = 0; j < 9;j++)
+            Set<Character> rowSet = new HashSet<>();
+            Set<Character> colSet = new HashSet<>();
+            Set<Character> subSet = new HashSet<>();
+            
+            for(int j=0; j<board[0].length; j++)
             {
-                if(board[i][j] != '.' && !rows.add(board[i][j]))
-                    return false;
-                if(board[j][i] != '.' && !cols.add(board[j][i]))
+                //check row duplicate
+                if(board[i][j] != '.' && !rowSet.add(board[i][j]))
                     return false;
                 
-                int rowIndex = 3 * (i / 3);
-                int colIndex = 3 * (i % 3);
+                //check column duplicate
+                if(board[j][i] != '.' && !colSet.add(board[j][i]))
+                    return false;
                 
-                if(board[rowIndex + j / 3][colIndex + j % 3] != '.' && !cube.add(board[rowIndex + j / 3][colIndex + j % 3]))
+                // check if sub box contains duplicate
+                int subRow = 3 * (i / 3) + j / 3;
+                int subCol = 3 * (i % 3) + j % 3;
+                
+                if(board[subRow][subCol] != '.' && !subSet.add(board[subRow][subCol]))
                     return false;
             }
         }
-     return true;
+        
+        return true;
     }
 }
 ```
