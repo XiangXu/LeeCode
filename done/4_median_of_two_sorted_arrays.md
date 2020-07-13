@@ -58,7 +58,7 @@ total: 1   2   3   4   5   6  ｜  7   9   10   11   13   16
 
 那么我们怎么来找到这个nums1的分割线呢, 这时候我们要注意到一个规律:
 
-因为这两个数组都是排序的数组, 所以我们来看一下L1,R1和L2,R2这四个值的特点, 当达成上述条件的时候 **L1的值应该小于R2的值, L2的值需要小于R1**.
+因为这两个数组都是排序的数组, 所以我们来看一下L1,R1和L2,R2这四个值的特点, 当达成上述条件的时候 **L1的值应该小于或等于R2的值, L2的值需要小于或等于R1**.
 
 如果R1的值小于L2说明我们的在nums1的切点太小要向后移. 如果L1的值大于R2的值则说明我们在nums1的切点太大要向前移.
 
@@ -92,12 +92,12 @@ class Solution
         // cut1 and cut2 are used to show how many numbers on the left side of the cut point
         int cut1 = 0;
         int cut2 = 0;
-        int start = 0;
-        int end = len1;
+        int left = 0;
+        int right = len1;
         
-        while(start <= end)
+        while(left <= right)
         {
-            cut1 = start + (end - start) / 2;
+            cut1 = (left + right) / 2;
             cut2 = len / 2 - cut1;
             
             int L1 = (cut1 == 0) ? Integer.MIN_VALUE : nums1[cut1-1];
@@ -106,9 +106,9 @@ class Solution
             int R2 = (cut2 == len2) ? Integer.MAX_VALUE : nums2[cut2];
             
             if(R1 < L2)
-                start = cut1 + 1;
+                left = cut1 + 1;
             else if(L1 > R2)
-                end = cut1 - 1;
+                right = cut1 - 1;
             else
             {
                 if(len % 2 == 0)
