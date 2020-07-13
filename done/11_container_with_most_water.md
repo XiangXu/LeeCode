@@ -26,7 +26,7 @@ In this case, the max area of water (blue section) the container can contain is 
 ## 空间时间复杂度分析:
 
 * **Time Complexity: O(n)**: 我们用两个指针从左到右一次移动一个来遍历数组.
-* **Space Complexity: O(1)**: 只声明了一些变量
+* **Space Complexity: O(1)**: 只声明了一些变量.
 
 ```java
 class Solution 

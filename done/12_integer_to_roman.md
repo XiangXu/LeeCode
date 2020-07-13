@@ -70,8 +70,8 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
 ## 空间时间复杂度分析:
 
-* **Time Complexity: O(1)**: 只是做了一些计算
-* **Space Complexity: O(1)**: 只声明了一些定量的数组
+* **Time Complexity: O(1)**: 只是做了一些计算.
+* **Space Complexity: O(1)**: 只声明了一些定量的数组.
 
 ```java
 class Solution

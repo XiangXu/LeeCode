@@ -32,8 +32,8 @@ Coud you solve it without converting the integer to a string?
 
 ## 空间时间复杂度分析:
 
-* **Time Complexity: O(logn)**: 每次将所给数字除以10
-* **Space Complexity: O(1)**: 只声明了一些变量
+* **Time Complexity: O(logn)**: 每次将所给数字除以10.
+* **Space Complexity: O(1)**: 只声明了一些变量.
 
 ```java
 public class Solution 

@@ -84,7 +84,7 @@ private int convertCharToInt(char c)
 ## 空间时间复杂度分析:
 
 * **Time Complexity: O(n)**: n是指所给字符串的长度, 因为这里我们遍历了这个字符串.
-* **Space Complexity: O(1)**: 只声明了一些定量的数组
+* **Space Complexity: O(1)**: 只声明了一些定量的数组.
 
 ```java
 class Solution 
