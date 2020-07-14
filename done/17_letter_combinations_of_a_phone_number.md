@@ -9,67 +9,33 @@ Example:
 Input: "23"  
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
 
-## First solution
+## Solution
 
-Runtime: **5 ms**
+这道题目我第一次做的时候并没有做出来, 想到的就是暴力破解法, 后来在深入的学习了算法以后, 发现其实这道题是可以用到DFS来解决的.
 
-Memory: **39.9 MB**
+感觉想用文字来解释其实挺难的, 我们这里就直接列出代码, 其实看到代码以后逻辑还是比较清晰的.
+
+这里要注意的是这段代码:
 
 ```java
-class Solution 
-{
-    private static final String[] KEYBOARD = {
-        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
-    };
-    
-    public List<String> letterCombinations(String digits) 
-    {
-        List<String> result = new ArrayList<String>();
-        
-        if(digits == null || digits.length() == 0)
-            return result;
-        
-        result.add("");
-        for(int i=0; i<digits.length(); i++)
-            result = combined(KEYBOARD[digits.charAt(i)-'0'], result);
-        
-        return result;
-    }
-    
-    private List<String> combined(String digit, List<String> result)
-    {
-        List<String> current = new ArrayList<>();
-        for(int i=0; i<digit.length(); i++)
-        {
-            for(String str: result)
-            {
-                current.add(str + digit.charAt(i));
-            }
-        }
-        
-        return current;
-    }
-}
+//a -> ad -> a -> ae -> a -> af
+//  -> b -> bd -> be -> bf.....
+sb.deleteCharAt(sb.length()-1);
 ```
 
-**Time Complexity: O(n<sup>3</sup>)** 
+其实就是每次完成以后我们需要退一位, 然后再进行下一次append, 仔细看注释的话其实就一目了然来
 
-**Space Complexity: O(n)**
+## 空间时间复杂度分析:
 
+* **Time Complexity: O(n)**: n是指递归执行的次数其实也就是两个字母对应字符串的的长度相乘之和.
+* **Space Complexity: O(n)**: 定义了一个list来存储结果, n的话为最总结果的长度.
 
-## Second solution
-
-Depth First Search
-
-Runtime: **0 ms**
-
-Memory: **38 MB**
-
+17 
 ```java
 class Solution 
 {
-    private String[] keyboard = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz", ""};
-    
+    // define keyboard, index matches the keyboard numbers
+    private static final String[] keyboard = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     
     public List<String> letterCombinations(String digits) 
     {
@@ -92,20 +58,17 @@ class Solution
             return;
         }
         
-        String letters = keyboard[digits.charAt(index) - '0'];
-        for(char c : letters.toCharArray())
+        String letters = keyboard[digits.charAt(index)-'0'];
+        for(char letter : letters.toCharArray())
         {
-            sb.append(c);
+            sb.append(letter);
             dfs(index+1, digits, sb, result);
-            sb.deleteCharAt(sb.length() - 1);
+            //a -> ad -> a -> ae -> a -> af
+            //  -> b -> bd -> be -> bf.....
+            sb.deleteCharAt(sb.length()-1);
         }
     }
-}   
+    
+}
 ```
-
-**Time Complexity: O(n<sup>4</sup>)** 
-
-pqrs will be 4.
-
-**Space Complexity: O(n)**
 

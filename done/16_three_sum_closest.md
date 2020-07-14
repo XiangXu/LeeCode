@@ -14,7 +14,7 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
 ## 空间时间复杂度分析:
 
-* **Time Complexity: O(n<sup>2</sup>)**: 这里我们遍历了所给数组，并且使用了左右指针, 等于嵌套了两个for循环.
+* **Time Complexity: O(n)**: 这里我不确定是不是.
 * **Space Complexity: O(1)**: 我们声明了一些变量来存储结果.
 
 ```java
