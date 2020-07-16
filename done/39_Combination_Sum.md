@@ -50,6 +50,12 @@ Constraints:
 3. 我们还需要在for循环中使用递归, 这样就能拿到所有的组合.
 4. 递归方法的第一步一定是来check一些条件来跳出递归.
 
+需要注意下面的这段代码, 我们不能直接将tempList传入result, 原因是因为如果这样做的话, result中的这个tempList和后面方法修改的tempList其实同时指向同一个tempList在heap之中, 那么之后我们对于这个list的修改同样会影响到这个result中的list的值.
+ 
+```java
+result.add(new ArrayList<>(tempList));
+```
+
 ## 空间时间复杂度分析:
 
 * **Time Complexity: O(n)**: n是值candidates中所有组合的总和.
