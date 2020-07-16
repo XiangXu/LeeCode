@@ -9,11 +9,15 @@ Input: 1->2->4, 1->3->4
 Output: 1->1->2->3->4->4
 ```
 
-## First Solution
+##  Solution
 
-Runtime: **0 ms**
+这题其实还是挺简单的, 没有花费太多的时间, 我写出了第一种方法, 看了答案以后发现其实还是可以用递归来做, 也挺容易理解的.
 
-Memory: **39.1 MB**
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(n)**: 这里n是指l1和l2中较长的那一个ListNode.
+* **Space Complexity: O(n)**: 这里我们只声明了一个dummyHead.
+
 
 ```java
 
@@ -22,51 +26,48 @@ Memory: **39.1 MB**
  * public class ListNode {
  *     int val;
  *     ListNode next;
- *     ListNode(int x) { val = x; }
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution 
-{
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) 
-    {        
-        ListNode result = new ListNode(0);
-        ListNode handler = result;
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2)
+    {
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr = dummyHead;
         
-        while(l1 != null && l2 != null)
+        while(l1 != null || l2 != null)
         {
-            if(l1.val <= l2.val)
+            int val1 = (l1 == null) ? Integer.MAX_VALUE : l1.val;
+            int val2 = (l2 == null) ? Integer.MAX_VALUE : l2.val;
+            
+            if(val1 < val2)
             {
-                handler.next = l1;
+                curr.next =new ListNode(val1);
                 l1 = l1.next;
             }
             else
             {
-                handler.next = l2;
+                curr.next =new ListNode(val2);
                 l2 = l2.next;
             }
-            handler = handler.next;
+            
+            curr = curr.next;
         }
         
-        if(l1 != null)
-            handler.next = l1;
-        else if(l2 != null)
-            handler.next = l2;
-        
-        return result.next;
+        return dummyHead.next;
     }
 }
 
 ```
 
-**Time Complexity: O(n)** 
+递归的解法, 稍微看一下应该不难理解
 
-**Space Complexity: O(n)**
+## 空间时间复杂度分析:
 
-## Second Solution
-
-Runtime: **0 ms**
-
-Memory: **38.8 MB**
+* **Time Complexity: O(n)**: 这里n是指l1和l2中较长的那一个ListNode.
+* **Space Complexity: O(1)**: 这里是直接在修改两个ListNodes.
 
 ```java
 
@@ -107,4 +108,4 @@ class Solution
 
 **Time Complexity: O(n)** 
 
-**Space Complexity: O(n)**
+**Space Complexity: O(1)**

@@ -9,57 +9,79 @@ Open brackets must be closed in the correct order.
 Note that an empty string is also considered valid.  
 
 Example 1:  
-Input: "()"<br>
-Output: true
 
-Example 2:<br>
-Input: "()[]{}"<br>
+```
+Input: "()"
 Output: true
+```
+Example 2:
 
-Example 3:<br>
-Input: "(]"<br>
+```
+Input: "()[]{}"
+Output: true
+```
+
+Example 3:
+
+```
+Input: "(]"
 Output: false
+```
 
-Example 4:<br>
-Input: "([)]"<br>
-Output: false<br>
+Example 4:
 
-Example 5:<br>
-Input: "{[]}"<br>
+```
+Input: "([)]"
+Output: false
+```
+
+Example 5:
+
+```
+Input: "{[]}"
 Output: true
+```
+
+## Solution
+
+这道题就是典型的配对题目, 第一次看到这道题的时候, 没什么经验感觉挺棘手的. 一般这种题目我们肯定需要用到stack的特性来做, 一旦了解这个其实这道题目就挺简单了.
 
 
-## First Solution
+## 空间时间复杂度分析:
 
-Runtime: **1 ms**
+* **Time Complexity: O(n)**: 这里我们遍历了所给的String s, s.
+* **Space Complexity: O(n)**: 这里我们只声明了一个stack.
 
-Memory: **37.7 MB**
 
 ```java
-
 class Solution 
 {
     public boolean isValid(String s) 
-    {   
-        Stack<Character> stack = new Stack();
+    {
+        if(s == null || s.length() == 1 || s.length() % 2 != 0)
+            return false;
         
-        for(char c: s.toCharArray())
+        if(s.length() == 0)
+            return true;
+        
+        Stack<Character> stack = new Stack<>();
+        
+        for(char c : s.toCharArray())
         {
-            if('(' == c)
+            if(c == '(')
                 stack.push(')');
-            else if('{' == c)
+            else if(c == '{')
                 stack.push('}');
-            else if('[' == c)
+            else if(c == '[')
                 stack.push(']');
-            else if(stack.isEmpty() || stack.pop() != c)
-                return false;
+            else
+            {
+                if(stack.isEmpty() || c != stack.pop())
+                    return false;
+            }
         }
+        
         return stack.isEmpty();
     }
 }
 ```
-
-
-**Time Complexity: O(n)** 
-
-**Space Complexity: O(n)**
