@@ -10,11 +10,29 @@ Example:
 Given 1->2->3->4, you should return the list as 2->1->4->3.
 ```
 
-## First Solution
+## Solution
 
-Runtime: **0 ms**
+这道题其实我觉得难度不是很高, 按照正常逻辑的步骤来做的话其实思路很清晰:
 
-Memory: **38.9 MB**
+1. 首先我们创建一个DummyHead, 初始化为0, 然后将它的下一个ListNode指向head, 最后再声明一个ListNode curr来指向dummyHead.
+2. 我们需要确保curr.next和curr.next.next都不为空, 这样我们才可以进行替换.
+
+接下来我们用一个例子来说明, 这样更加直观:
+
+1. dummyHead: 0->1->2->3->4, 此时curr=0;
+2. 此时我们声明一个first和second, first为curr.next=1, second为curr.next.next=2.
+3. 我们将curr.next指向second, 此时ListNode变为: 0->2->3->4 1.
+4. 我们再将first.next=second.next, 此时ListNode变为: 0->2 1->3->4.
+5. 然后我们再将curr.next.next = first, 这样Listnode变为: 0->2->1->3->4.
+6. 最后我们将curr=curr.next.next, 此时curr=3, 再次进行while循环.
+
+具体代码实现如下
+
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(logn)**: n是dummyHead的长度, 这里我们每隔2位数遍历一次dummyHead.
+* **Space Complexity: O(n)**: 我们用了一个dummyhead来存储所有的元素.
+
 
 ```java
 /**
