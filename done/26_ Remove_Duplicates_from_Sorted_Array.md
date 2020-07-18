@@ -24,36 +24,39 @@ Your function should return length = 5, with the first five elements of nums bei
 It doesn't matter what values are set beyond the returned length.
 ```
 
-## First Solution
+## Solution
 
-Two Pointers
+这道题目感觉可以用双指针, 我们用两个指针left和right同时指向index为0的位置, 接下来我们首先向右移动right指针:
+1. 如果right指针的数等于left指针的数, 我们就继续移动right.
+2. 如果right指针的数不等于left指针的数, 说明这时候我们发现了一个新的数, 于是我们就将left++, 移动到下一位，然后nums[left] = nums[right], 这个时候我们就完成了替换, 然后继续移动right.
+3. 一直重复上述的过程知道right移动到了最后一位, 这时候left值就是我们要的结果.
 
-Runtime: **0 ms**
+## 空间时间复杂度分析:
 
-Memory: **40.7 MB**
+* **Time Complexity: O(n)**: n是nums数组的长度, 我们遍历了nums数组.
+* **Space Complexity: O(1)**: 我们只声明了一些变量-两个指针.
 
 ```java
-class Solution {
+class Solution 
+{    
     public int removeDuplicates(int[] nums) 
     {
         if(nums == null || nums.length == 0)
             return 0;
         
-        int i = 0;
-        for(int j=1; j<nums.length; j++)
+        int left = 0;
+        int right = 0;
+        
+        while(right < nums.length)
         {
-            if(nums[i] != nums[j])
+            if(nums[left] != nums[right])
             {
-                i++;
-                nums[i] = nums[j];
+                nums[++left] = nums[right];
             }
+            right ++;
         }
         
-        return i + 1;
+        return left+1;
     }
 }
 ```
-
-**Time Complexity: O(n)** 
-
-**Space Complexity: O(1)**
