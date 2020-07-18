@@ -13,53 +13,57 @@ Input:
 Output: 1->1->2->3->4->4->5->6
 ```
 
-## First Solution
+## Solution
 
-Runtime: **14 ms**
+这题应该是有其他更好的解法, 我想出的解法其实挺简单的, 用一个priority queue, 然后遍历lists数组中所有的值, 全部放入这个queue中.
 
-Memory: **45.3 MB**
+这时候所有的数应该是按照从小到大的顺序在queue中排列的.
+
+最后我们遍历这个queue把元素加到一个新的list node中返回就能得到结果了.
+
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(n)**: n是lists的长度, 这里我们遍历了lists数组.
+* **Space Complexity: O(n)**: 我们用了一个queue来存储所有的元素.
+
 
 ```java
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
  *     ListNode next;
- *     ListNode(int x) { val = x; }
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
 class Solution 
 {
     public ListNode mergeKLists(ListNode[] lists) 
     {
-        ListNode result = new ListNode(0);
-        ListNode current = result;        
-        List<Integer> list = new ArrayList<>();   
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr = dummyHead;
+        PriorityQueue<Integer> queue = new PriorityQueue<Integer>( (l1, l2) -> l1-l2);
         
-        for(ListNode listNode: lists)
+        for(ListNode listNode : lists)
         {
             while(listNode != null)
             {
-                list.add(listNode.val);
+                queue.offer(listNode.val);
                 listNode = listNode.next;
             }
         }
         
-        Collections.sort(list);
-        
-        for(int i: list)
+        while(!queue.isEmpty())
         {
-            current.next = new ListNode(i);
-            current = current.next;
+            ListNode listNode = new ListNode(queue.poll());
+            curr.next = listNode;
+            curr = curr.next;
         }
         
-        return result.next;
+        return dummyHead.next;
     }
 }
 
 ```
-
-**Time Complexity: O(n<sup>2</sup>)** 
-
-**Space Complexity: O(m+n)**

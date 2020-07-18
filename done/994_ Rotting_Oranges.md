@@ -39,11 +39,20 @@ Note:
 2. 1 <= grid[0].length <= 10
 3. grid[i][j] is only 0, 1, or 2.
 
-## First Solution
+## Solution
 
-Runtime: **4 ms**
+这道题目是一道典型的BFS的题目. 我们将所有的腐烂的橘子的位置全部加入到一个queue中，与此同时我们也count一下新鲜橘子的数量. 
 
-Memory: **40.2 MB**
+如果没有新鲜橘子就直接可以返回0了.
+
+这里我们需要注意一下在DFS中用一个for循环来遍历queu中所有腐烂橘子, 这样做的目的是用来count步数, 每遍历一次所有腐烂的橘子, 步数加1.
+
+这里我们并不需要用一个boolean[][] visited, 原因是因为腐烂的橘子的1我们可以用来当作访问的点.
+
+## 空间时间复杂度分析:
+
+**Time Complexity: O(n)** 这里其实我并不确定.
+**Space Complexity: O(n)** 这里用来一个queue来存储所有腐烂橘子的坐标.
 
 ```java
 class Solution 
@@ -101,8 +110,4 @@ class Solution
     }
 }
 ```
-
-**Time Complexity: O(n<sup>2</sup>)**
-
-**Space Complexity: O(n)**
     
