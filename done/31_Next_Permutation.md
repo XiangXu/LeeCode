@@ -28,8 +28,8 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 ## 空间时间复杂度分析:
 
-* **Time Complexity: O(n)**: 遍历字符串s的for循环, n为s的长度.
-* **Space Complexity: O(n))**: 这里用了一个Map来存储word出现的次数, n为map的大小.
+* **Time Complexity: O(n)**: 从右到左遍历nums数组的循环, n为nums的长度.
+* **Space Complexity: O(1))**: 这里只声明了一些变量.
 
 
 ```java
