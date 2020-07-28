@@ -11,7 +11,7 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
 
 ## Solution
 
-这道题目我第一次做的时候并没有做出来, 想到的就是暴力破解法, 后来在深入的学习了算法以后, 发现其实这道题是可以用到DFS来解决的.
+这道题目我第一次做的时候并没有做出来, 想到的就是暴力破解法, 后来在深入的学习了算法以后, 发现其实这道题是可以用到Back Tracking的思想来解决的.
 
 感觉想用文字来解释其实挺难的, 我们这里就直接列出代码, 其实看到代码以后逻辑还是比较清晰的.
 
@@ -46,12 +46,12 @@ class Solution
         List<String> result = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         
-        dfs(0, digits, sb, result);
+        backTracking(0, digits, sb, result);
         
         return result;
     }
     
-    private void dfs(int index, String digits, StringBuilder sb, List<String> result)
+    private void backTracking(int index, String digits, StringBuilder sb, List<String> result)
     {
         if(index == digits.length())
         {
@@ -63,7 +63,7 @@ class Solution
         for(char letter : letters.toCharArray())
         {
             sb.append(letter);
-            dfs(index+1, digits, sb, result);
+            backTracking(index+1, digits, sb, result);
             //a -> ad -> a -> ae -> a -> af
             //  -> b -> bd -> be -> bf.....
             sb.deleteCharAt(sb.length()-1);
