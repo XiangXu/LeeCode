@@ -33,6 +33,11 @@ Constraints:
 1. 为了要拿到起点, 就算我们通过了Binary Search拿到了结果, 我们还是要继续通过缩小end来缩小范围.
 2. 为了要拿到终点, 就算我们通过了Binary Search拿到了结果, 我们还是要继续通过增加start来缩小范围.
 
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(logn)**: 这里用binary search来找到start和end.
+* **Space Complexity: O(1)**: 我们这里只声明了一些变量.
+
 ```java
 class Solution 
 {
