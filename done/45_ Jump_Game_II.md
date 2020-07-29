@@ -74,3 +74,50 @@ class Solution
     }
 }
 ```
+
+但是上面的方法是在是太慢了, 在我看了答案以后学习了一个新的算法Greedy Algorithm
+
+https://github.com/XiangXu/Programming-Daily-Learning/blob/master/Algorithm/3_Greedy_Algorithm.md
+
+这个题目就非常试用, 但是我觉得Greedy Algorithm的难点是如何证明它是对的. 这里的思路是每一步都在允许的步数范围内取最大的数, 举个例子:
+
+```
+nums = [2, 3, 1, 1, 4]
+
+1. index = 0, value = 2; 此时可以选择的有: index = 1, value = 3 和 index = 2, value = 1; 我们选择最大的3.
+2. index = 2, value = 3; 此时可以选择的有: index = 2, value = 1; index = 3, value = 1; index = 4, value 4 = 4; 我们选择4, 此时达到nums的最后一位.
+
+所以最后的结果为2
+```
+
+## 空间时间复杂度分析:
+
+* **Time Complexity: O(n)**: for循环遍历了nums数组, n为数组的长度.
+* **Space Complexity: O(1)**: 只声明了一些变量.
+
+```java
+class Solution 
+{
+    public int jump(int[] nums) 
+    {
+        if(nums == null || nums.length == 0)
+            return 0;
+        
+        int currentMaxIndex = 0;
+        int nextMaxIndex = 0;
+        int steps = 0;
+        
+        for(int i=0; i<nums.length-1; i++)
+        {
+            currentMaxIndex = Math.max(i + nums[i], currentMaxIndex);
+            if(nextMaxIndex == i)
+            {
+                steps ++;
+                nextMaxIndex = currentMaxIndex;
+            }
+        }
+        
+        return steps;
+    }
+}
+```
