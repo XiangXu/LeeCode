@@ -85,11 +85,11 @@ class Solution
     {
         for(int i=0; i<board.length; i++)
         {    
-            // check if current row contains duplicate
+            // check if current column contains duplicate
             if(board[row][i] == c)
                 return false;
             
-            // check if current column contains duplicate
+            // check if current row contains duplicate
             if(board[i][col] == c)
                 return false;
             

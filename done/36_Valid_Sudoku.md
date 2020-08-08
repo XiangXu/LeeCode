@@ -103,12 +103,12 @@ class Solution
             
             for(int j=0; j<board[0].length; j++)
             {
-                //check row duplicate
-                if(board[i][j] != '.' && !rowSet.add(board[i][j]))
+                //check column duplicate
+                if(board[i][j] != '.' && !colSet.add(board[i][j]))
                     return false;
                 
-                //check column duplicate
-                if(board[j][i] != '.' && !colSet.add(board[j][i]))
+                //check row duplicate
+                if(board[j][i] != '.' && !rowSet.add(board[j][i]))
                     return false;
                 
                 // check if sub box contains duplicate
