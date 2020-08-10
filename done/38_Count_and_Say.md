@@ -50,13 +50,7 @@ Explanation: For n = 3 the term was "21" in which we have two groups "2" and "1"
 
 4的话其实是对3的解释, 就是有一个二和一个以一, 所以是1211
 
-这道题感觉也没有什么规律, 就是暴力破解. 这里要注意如下两个地方.
-
-```java
-for(int j=0; j<=str.length(); j++)
-
-j != str.length()
-```
+这道题感觉也没有什么规律, 就是暴力破解.
 
 ## 空间时间复杂度分析:
 
@@ -70,25 +64,31 @@ class Solution
     {
         String str = "1";
         
+        // how many times we count
         for(int i=1; i<n; i++)
         {
             StringBuilder sb = new StringBuilder();
             char firstChar = str.charAt(0);
             int count = 0;
+            
+            //generate new String based on previous String
             for(int j=0; j<=str.length(); j++)
             {
-                if(j != str.length() && str.charAt(j) == firstChar)
+                if(j == str.length())
                 {
-                    count++;
+                    sb.append(count).append(firstChar);
+                    break;
+                }
+                
+                if(firstChar == str.charAt(j))
+                {
+                    count ++;
                 }
                 else
                 {
-                    sb.append(count).append(firstChar);  
-                    if(j != str.length())
-                    {
-                        firstChar = str.charAt(j);
-                        count = 1;
-                    }
+                    sb.append(count).append(firstChar);
+                    firstChar = str.charAt(j);
+                    count = 1;
                 }
             }
             
@@ -96,6 +96,7 @@ class Solution
         }
         
         return str;
+        
     }
 }
 ```
