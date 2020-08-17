@@ -73,13 +73,13 @@ class Solution
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> tempList = new ArrayList<>();
         
-        dfs(0, tempList, candidates, target, result);
+        backTracking(0, tempList, candidates, target, result);
         
         return result;
     }
     
     
-    private void dfs(int index, List<Integer> tempList, int[] candidates, int target, List<List<Integer>> result)
+    private void backTracking(int index, List<Integer> tempList, int[] candidates, int target, List<List<Integer>> result)
     {
         if(target <= 0)
         {
@@ -92,7 +92,7 @@ class Solution
         for(int i=index; i<candidates.length; i++)
         {
             tempList.add(candidates[i]);
-            dfs(i, tempList, candidates, target-candidates[i], result);
+            backTracking(i, tempList, candidates, target-candidates[i], result);
             tempList.remove(tempList.size()-1);
         }
     }
